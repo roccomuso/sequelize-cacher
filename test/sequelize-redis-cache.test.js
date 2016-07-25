@@ -6,10 +6,10 @@ var initCache = require('..');
 
 var opts = {};
 opts.database = process.env.DB_NAME || 'sequelize_redis_cache_test';
-opts.user = process.env.DB_USER || 'root';
+opts.user     = process.env.DB_USER || 'root';
 opts.password = process.env.DB_PASS;
-opts.dialect = process.env.DB_DIALECT || 'sqlite';
-opts.logging = process.env.DB_LOG ? console.log : false;
+opts.dialect  = process.env.DB_DIALECT || 'sqlite';
+opts.logging  = process.env.DB_LOG ? console.log : false;
 
 var redisPort = process.env.REDIS_PORT || 6379;
 var redisHost = process.env.REDIS_HOST;
@@ -89,8 +89,8 @@ describe('Sequelize-Redis-Cache', function() {
           }, onErr);
       }, onErr);
   });
-  
-  
+
+
   it('should fetch stuff from database with and without cache', function(done) {
     var query = { where: { createdAt: inst.createdAt } };
     var obj = cacher('entity')
