@@ -1,5 +1,7 @@
-sequelize-redis-cache [![Build Status](https://travis-ci.org/rfink/sequelize-redis-cache.svg?branch=master)](https://travis-ci.org/rfink/sequelize-redis-cache)
+sequelize-cacher [![Build Status](https://travis-ci.org/rfink/sequelize-redis-cache.svg?branch=master)](https://travis-ci.org/rfink/sequelize-redis-cache)
 =====================
+
+<h2>Work in progres...</h2>
 
 Small fluent interface for caching sequelize database query results in redis more easily.
 Simply put, this is a wrapper around sequelize retrieval methods that will automatically
