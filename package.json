@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rfink/sequelize-redis-cache.git"
+    "url": "https://github.com/roccomuso/sequelize-cacher.git"
   },
   "keywords": [
     "sequelize",
@@ -21,7 +21,7 @@
     "postgres",
     "sqlite"
   ],
-  "author": "Ryan Fink <ryanjfink@gmail.com>",
+  "author": "Rocco Musolino <rocco@hackerstribe.com>",
   "license": "MIT",
   "devDependencies": {
     "mocha": "1.21.4",
