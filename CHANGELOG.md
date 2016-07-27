@@ -1,3 +1,7 @@
+# v.1.3.0 #
+- Now supporting memcached as cache engine
+- Redis and Memcached are now 2 distincts cache layers
+
 # v1.2.0 #
 - Fixed issue with associations generating new cache (H/T https://github.com/NotJustClarkKent)
 - Updated dev dependencies for sqlite3, redis (should work test correctly with node 4.x, 5.x, 6.x)

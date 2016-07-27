@@ -1,20 +1,20 @@
-sequelize-cacher [![Build Status](https://travis-ci.org/rfink/sequelize-redis-cache.svg?branch=master)](https://travis-ci.org/rfink/sequelize-redis-cache)
+sequelize-cacher [![Build Status](https://travis-ci.org/roccomuso/sequelize-cacher.svg?branch=master)](https://travis-ci.org/roccomuso/sequelize-cacher)
 =====================
 
-<h2>Work in progres...</h2>
-
-Small fluent interface for caching sequelize database query results in redis more easily.
+Small fluent interface for caching sequelize database query results in redis/memcached more easily.
 Simply put, this is a wrapper around sequelize retrieval methods that will automatically
-check in the configured redis instance for a value (based on a hash of the query and
-model name), then retrieve from the database and persist in redis if not found.  It is
+check in the configured redis/memcached instance for a value (based on a hash of the query and
+model name), then retrieve from the database and persist in redis/memcached if not found.  It is
 promise based, so it will resemble sequelize for the most part, and be co/koa friendly.
+
+This project is a fork of [sequelize-redis-cache](https://github.com/rfink/sequelize-redis-cache) by rfink, but with a new layer of cache supporting also memcached!
 
 Installation
 =====================
 
 ```
 
-npm install sequelize-redis-cache
+npm install sequelize-cacher
 
 ```
 
@@ -23,13 +23,13 @@ Usage
 
 ```javascript
 
-var initCacher = require('sequelize-redis-cache');
-var redis = require('redis');
+var initCache = require('sequelize-cacher');
+var redis = require('redis'); // or require('memcached')
 var Sequelize = require('sequelize');
 
-var rc = redis.createClient(6379, 'localhost');
+var cacheEngine = redis.createClient(6379, 'localhost');
 var db = new Sequelize('cache_tester', 'root', 'root', { dialect: 'mysql' });
-var cacher = initCache(db, rc);
+var cacher = initCache(db, cacheEgine);
 
 var cacheObj = cacher('sequelize-model-name')
   .ttl(5);
@@ -60,4 +60,5 @@ This library does not handle automatic invalidation of caches, since it currentl
 
 License
 ====================
+MIT - roccomuso
 MIT - Rekt
