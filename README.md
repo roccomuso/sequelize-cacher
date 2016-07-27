@@ -1,13 +1,13 @@
 sequelize-cacher [![Build Status](https://travis-ci.org/roccomuso/sequelize-cacher.svg?branch=master)](https://travis-ci.org/roccomuso/sequelize-cacher)
 =====================
 
-Small fluent interface for caching sequelize database query results in redis/memcached more easily.
+*Small fluent interface for caching sequelize database query results in redis/memcached more easily*.
 Simply put, this is a wrapper around sequelize retrieval methods that will automatically
 check in the configured redis/memcached instance for a value (based on a hash of the query and
 model name), then retrieve from the database and persist in redis/memcached if not found.  It is
 promise based, so it will resemble sequelize for the most part, and be co/koa friendly.
 
-This project is a fork of [sequelize-redis-cache](https://github.com/rfink/sequelize-redis-cache) by rfink, but with a new layer of cache supporting also memcached!
+This project is a fork of [sequelize-redis-cache](https://github.com/rfink/sequelize-redis-cache) by rfink, but with a new layer of cache supporting also **memcached**!
 
 Installation
 =====================
