@@ -24,10 +24,12 @@ Usage
 ```javascript
 
 var initCache = require('sequelize-cacher');
-var redis = require('redis'); // or require('memcached')
+var redis = require('redis');
+// var Memcached = require('memcached');
 var Sequelize = require('sequelize');
 
 var cacheEngine = redis.createClient(6379, 'localhost');
+// var cacheEngine = new Memcached('localhost:11211');
 var db = new Sequelize('cache_tester', 'root', 'root', { dialect: 'mysql' });
 var cacher = initCache(db, cacheEgine);
 
