@@ -2,6 +2,7 @@ language: node_js
 
 services:
   - redis-server
+  - memcached
 
 node_js:
   - "0.10"
