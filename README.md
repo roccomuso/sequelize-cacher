@@ -60,5 +60,7 @@ This library does not handle automatic invalidation of caches, since it currentl
 
 License
 ====================
+
 MIT - roccomuso
+
 MIT - Rekt
