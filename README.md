@@ -23,10 +23,10 @@ Usage
 
 ```javascript
 
+var Sequelize = require('sequelize');
 var initCache = require('sequelize-cacher');
 var redis = require('redis');
 // var Memcached = require('memcached');
-var Sequelize = require('sequelize');
 
 var cacheEngine = redis.createClient(6379, 'localhost');
 // var cacheEngine = new Memcached('localhost:11211');
