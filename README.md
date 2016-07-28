@@ -46,14 +46,14 @@ cacheObj.find({ where: { id: 3 } })
 Check the tests out for more info, but it's pretty simple.  The currently supported
 methods are:
 
-  find
-  findOne
-  findAll
-  findAndCountAll
-  all
-  min
-  max
-  sum
+- find
+- findOne
+- findAll
+- findAndCountAll
+- all
+- min
+- max
+- sum
 
 Notes
 =====================
