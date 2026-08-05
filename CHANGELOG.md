@@ -1,3 +1,13 @@
+# v2.0.0 #
+- Upgrade to Sequelize 6.x, redis 6.x (node-redis v4+ promise API), memcached, mocha, should and sqlite3
+- Drop `bluebird` in favor of native Promises/async-await; replace deprecated `circular-json` with `flatted`
+- Fix: `find`/`all` were silently broken against any Sequelize >=4 (the underlying `find`/`all` model methods were removed); they're now mapped internally to `findOne`/`findAll` and kept as public aliases
+- Fix: Sequelize-instance detection (`toString() === '[object SequelizeInstance]'`) no longer matched anything on modern Sequelize instances; replaced with a proper `instanceof Sequelize.Model` check
+- Fix: the library called `process.exit(1)` when no valid Redis/Memcached instance was supplied, killing the host process; it now throws an `Error` instead
+- Replace the fragile `require('redis').RedisClient` instanceof check (removed in node-redis v4+) with duck-typing so engine detection no longer depends on internal client class shapes
+- Requires Node >=20
+- Replace Travis CI with GitHub Actions
+
 # v.1.3.0 #
 - Now supporting memcached as cache engine
 - Redis and Memcached are now 2 distincts cache layers

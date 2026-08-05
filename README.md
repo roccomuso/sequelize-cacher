@@ -1,4 +1,4 @@
-sequelize-cacher [![Build Status](https://travis-ci.org/roccomuso/sequelize-cacher.svg?branch=master)](https://travis-ci.org/roccomuso/sequelize-cacher)
+sequelize-cacher [![test](https://github.com/roccomuso/sequelize-cacher/actions/workflows/test.yml/badge.svg)](https://github.com/roccomuso/sequelize-cacher/actions/workflows/test.yml)
 =====================
 
 *Small fluent interface for caching sequelize database query results in redis/memcached more easily*.
@@ -23,37 +23,42 @@ Usage
 
 ```javascript
 
-var Sequelize = require('sequelize');
-var initCache = require('sequelize-cacher');
-var redis = require('redis');
-// var Memcached = require('memcached');
+const Sequelize = require('sequelize');
+const initCache = require('sequelize-cacher');
+const redis = require('redis');
+// const Memcached = require('memcached');
 
-var cacheEngine = redis.createClient(6379, 'localhost');
-// var cacheEngine = new Memcached('localhost:11211');
-var db = new Sequelize('cache_tester', 'root', 'root', { dialect: 'mysql' });
-var cacher = initCache(db, cacheEgine);
+const cacheEngine = redis.createClient({ socket: { host: 'localhost', port: 6379 } });
+await cacheEngine.connect(); // required as of redis v4+
+// const cacheEngine = new Memcached('localhost:11211');
+const db = new Sequelize('cache_tester', 'root', 'root', { dialect: 'mysql' });
+const cacher = initCache(db, cacheEngine);
 
-var cacheObj = cacher('sequelize-model-name')
-  .ttl(5);
-cacheObj.find({ where: { id: 3 } })
-  .then(function(row) {
-    console.log(row); // sequelize db object
-    console.log(cacheObj.cacheHit); // true or false
-  });
+const cacheObj = cacher('sequelize-model-name').ttl(5);
+const row = await cacheObj.find({ where: { id: 3 } });
+console.log(row); // plain object
+console.log(cacheObj.cacheHit); // true or false
 
 ```
 
 Check the tests out for more info, but it's pretty simple.  The currently supported
 methods are:
 
-- find
+- find (alias of findOne)
 - findOne
 - findAll
 - findAndCountAll
-- all
+- all (alias of findAll)
 - min
 - max
 - sum
+
+`find` and `all` are legacy aliases kept for backward compatibility; Sequelize itself
+dropped those method names as of v4, so under the hood they're mapped to `findOne`
+and `findAll` respectively.
+
+This library expects a Redis client from `redis` v4+ (already `.connect()`-ed before
+being passed in) or a client from the `memcached` package.
 
 Notes
 =====================
